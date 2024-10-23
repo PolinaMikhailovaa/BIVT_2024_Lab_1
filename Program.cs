@@ -592,22 +592,23 @@ answer = Math.Round(answer, 2);
         double S = 0, y = 0;
 
         // code here
-        double a = 1, p = -1, x1 = x;
-const double eps = 0.0001;
-int i = 1;
-while (Math.Abs(a) > eps)
-{
+    double x = 0.1;
+    double a = 1, p = -1, x1 = x;
+    const double eps = 0.0001;
+    int i = 1;
+    while (Math.Abs(a) > eps)
+    {
+    S += a;
     p = -p;
     if (i > 1)
-    {
-        x1 *= x * x; 
-    }
-    a = p * (x1 / (4 * i * i - 1));
-    S += a;
+        {
+        x1 *= x * x;
+        }
     i += 1;
-}
-y = (((1 + x * x) * Math.Atan(x)) / 2) - (x / 2);
-Console.WriteLine($"s = {S}, y = {y}");
+    a = p * (x1 / (4 * i * i - 1));
+    }
+    y = (((1 + x * x) * Math.Atan(x)) / 2) - (x / 2);
+    Console.WriteLine(Math.Round(y, 4));
         // end
 
         return (S, y);
